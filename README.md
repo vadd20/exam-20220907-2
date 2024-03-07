@@ -1,5 +1,26 @@
 # 20220907-2
+## Особенности задачи:
 
+1. Определить, пересекаются ли даты
+
+   ```java
+       // не пересекаются в случае, если старт1 после конца2 ИЛИ старт2 после конца1
+       public static boolean isNotOverlap(LocalDate start1, LocalDate end1, LocalDate start2, LocalDate end2) {
+        return start1.isAfter(end2) || start2.isAfter(end1);
+    }
+
+      // условие на пересечение (де Морган)
+      !start1.isAfter(end2) && !start2.isAfter(end1);
+   ```
+
+ 2. Отсортировать так, что если по первому признаку равны, сортируем по второму
+    ```java
+    realties.stream()
+                .sorted(Comparator
+                        .comparing(Realty::getIntersections).reversed()
+                        .thenComparing(Realty::getType)
+                        .thenComparing(Realty::getAddress)).toList();
+    ```
 Задачи экзамена по Java 07/09/2022 - экзаменуемый 2
 
 Вы помогаете риэлторскому агентству оптимизировать свою работу.
